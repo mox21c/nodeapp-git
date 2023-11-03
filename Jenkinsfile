@@ -1,4 +1,4 @@
-def IMAGE_VERSION = '1.5.0'
+def IMAGE_VERSION = '1.6.0'
 pipeline {
 	agent any
 	stages {
@@ -20,7 +20,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    docker.withRegistry("https://registry.hub.docker.com/${env.IMAGE_REPO}", 'ecr:ap-northeast-2:') {            
+                    docker.withRegistry("https://registry.hub.docker.com/${env.IMAGE_REPO}", 'dockerhub-credentials') {            
                         app.push(IMAGE_VERSION)
                         app.push("latest")
                     }
